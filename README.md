@@ -20,6 +20,7 @@ With Ubuntu **18.04** images on the `latest` tags, Docker-LAMP is flexible enoug
     - [Creating a database](#creating-a-database)
       - [PHPMyAdmin](#phpmyadmin)
       - [Command Line](#command-line)
+  - [Change PHP Version](#change-php-version)
 - [Adding your own content](#adding-your-own-content)
   - [Adding your app](#adding-your-app)
   - [Persisting your MySQL](#persisting-your-mysql)
@@ -90,6 +91,29 @@ Docker-LAMP comes pre-installed with phpMyAdmin available from `http://DOCKER_AD
 First, get the ID of your running container with `docker ps`, then run the below command replacing `CONTAINER_ID` and `DATABASE_NAME` with your required values:
 ```bash
 docker exec CONTAINER_ID  mysql -uroot -e "create database DATABASE_NAME"
+```
+
+
+### Change PHP Version
+You can change PHP version using .htaccess on each project folder.
+```
+# change to PHP 5.6
+<FilesMatch \.php> 
+    # Apache 2.4.10+ can proxy to unix socket 
+    SetHandler "proxy:unix:/var/run/php/php5.6-fpm.sock|fcgi://localhost/" 
+</FilesMatch>
+
+# change to PHP 7.4
+<FilesMatch \.php> 
+    # Apache 2.4.10+ can proxy to unix socket 
+    SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/" 
+</FilesMatch>
+
+# change to PHP 8.0
+<FilesMatch \.php> 
+    # Apache 2.4.10+ can proxy to unix socket 
+    SetHandler "proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost/" 
+</FilesMatch>
 ```
 
 
