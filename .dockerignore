@@ -1,0 +1,8 @@
+.gitignore
+CHANGELOG.md
+circle.yml
+docker-compose.test.yml
+docs/
+tests/
+LICENSE
+README.md
