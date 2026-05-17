@@ -1,4 +1,15 @@
-<FilesMatch \.php> 
-    # Apache 2.4.10+ can proxy to unix socket 
-    SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost/" 
+<FilesMatch \.php$>
+    SetHandler "proxy:fcgi://php85:9000"
 </FilesMatch>
+
+# To switch to PHP 7.4 use:
+#
+# <FilesMatch \.php$>
+#     SetHandler "proxy:fcgi://php74:9000"
+# </FilesMatch>
+
+# To switch to PHP 5.6 use:
+#
+# <FilesMatch \.php$>
+#     SetHandler "proxy:fcgi://php56:9000"
+# </FilesMatch>

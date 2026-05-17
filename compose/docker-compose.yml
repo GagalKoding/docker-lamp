@@ -1,64 +1,56 @@
 services:
   apache:
     build:
-      context: .
+      context: ..
       dockerfile: docker/apache/Dockerfile
 
-    container_name: docker-lamp-test-apache
+    container_name: docker-lamp-apache
 
     ports:
-      - "3000:80"
+      - "80:80"
 
     volumes:
-      - ./app:/var/www/html
+      - ../app:/var/www/html
 
     depends_on:
       - php56
       - php74
       - php85
 
-    restart: unless-stopped
-
   php56:
     build:
-      context: .
+      context: ..
       dockerfile: docker/php56/Dockerfile
 
-    container_name: docker-lamp-test-php56
+    container_name: docker-lamp-php56
 
     volumes:
-      - ./app:/var/www/html
-
-    restart: unless-stopped
+      - ../app:/var/www/html
 
   php74:
     build:
-      context: .
+      context: ..
       dockerfile: docker/php74/Dockerfile
 
-    container_name: docker-lamp-test-php74
+    container_name: docker-lamp-php74
 
     volumes:
-      - ./app:/var/www/html
-
-    restart: unless-stopped
+      - ../app:/var/www/html
 
   php85:
     build:
-      context: .
+      context: ..
       dockerfile: docker/php85/Dockerfile
 
-    container_name: docker-lamp-test-php85
+    container_name: docker-lamp-php85
 
     volumes:
-      - ./app:/var/www/html
-
-    restart: unless-stopped
+      - ../app:/var/www/html
 
   db:
     image: mariadb:11
 
-    container_name: docker-lamp-test-db
+    container_name: docker-lamp-db
 
     restart: unless-stopped
 
@@ -69,20 +61,20 @@ services:
       MYSQL_PASSWORD: app
 
     ports:
-      - "3001:3306"
+      - "3306:3306"
 
     volumes:
-      - mysql_test_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin:latest
 
-    container_name: docker-lamp-test-pma
+    container_name: docker-lamp-pma
 
     restart: unless-stopped
 
     ports:
-      - "3002:80"
+      - "8080:80"
 
     environment:
       PMA_HOST: db
@@ -91,4 +83,4 @@ services:
       - db
 
 volumes:
-  mysql_test_data:
+  mysql_data:
