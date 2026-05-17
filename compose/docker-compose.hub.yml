@@ -1,6 +1,6 @@
 services:
   apache:
-    image: gagalkoding/lamp:2.1-apache
+    image: gagalkoding/lamp:2.2-apache
 
     container_name: docker-lamp-apache
 
@@ -21,7 +21,7 @@ services:
       - lamp
 
   php56:
-    image: gagalkoding/lamp:2.1-php56
+    image: gagalkoding/lamp:2.2-php56
 
     container_name: docker-lamp-php56
 
@@ -35,7 +35,7 @@ services:
       - lamp
 
   php74:
-    image: gagalkoding/lamp:2.1-php74
+    image: gagalkoding/lamp:2.2-php74
 
     container_name: docker-lamp-php74
 
@@ -49,7 +49,7 @@ services:
       - lamp
 
   php85:
-    image: gagalkoding/lamp:2.1-php85
+    image: gagalkoding/lamp:2.2-php85
 
     container_name: docker-lamp-php85
 
