@@ -1,0 +1,162 @@
+<svg width="980" height="520" viewBox="0 0 980 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="980" height="520" rx="24" fill="#0F172A"/>
+
+  <text x="40" y="55"
+        fill="white"
+        font-size="32"
+        font-family="Arial"
+        font-weight="700">
+    Docker-LAMP v2 Architecture
+  </text>
+
+  <text x="40" y="88"
+        fill="#94A3B8"
+        font-size="16"
+        font-family="Arial">
+    Multi-runtime modular PHP platform
+  </text>
+
+  <!-- Apache -->
+  <rect x="360" y="120" width="260" height="90" rx="18" fill="#1E293B" stroke="#38BDF8" stroke-width="2"/>
+
+  <text x="430" y="160"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    Apache 2.4
+  </text>
+
+  <text x="408" y="190"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Reverse Proxy + Gateway
+  </text>
+
+  <!-- PHP56 -->
+  <rect x="80" y="300" width="220" height="110" rx="18" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+
+  <text x="140" y="345"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    PHP 5.6
+  </text>
+
+  <text x="115" y="375"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Legacy Runtime
+  </text>
+
+  <text x="95" y="400"
+        fill="#94A3B8"
+        font-size="13"
+        font-family="Arial">
+    WHMCS / Old CMS
+  </text>
+
+  <!-- PHP74 -->
+  <rect x="380" y="300" width="220" height="110" rx="18" fill="#1E293B" stroke="#8B5CF6" stroke-width="2"/>
+
+  <text x="440" y="345"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    PHP 7.4
+  </text>
+
+  <text x="410" y="375"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Transitional Runtime
+  </text>
+
+  <text x="425" y="400"
+        fill="#94A3B8"
+        font-size="13"
+        font-family="Arial">
+    Laravel 6/7/8
+  </text>
+
+  <!-- PHP85 -->
+  <rect x="680" y="300" width="220" height="110" rx="18" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+
+  <text x="740" y="345"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    PHP 8.5
+  </text>
+
+  <text x="725" y="375"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Modern Runtime
+  </text>
+
+  <text x="730" y="400"
+        fill="#94A3B8"
+        font-size="13"
+        font-family="Arial">
+    Latest Applications
+  </text>
+
+  <!-- DB -->
+  <rect x="40" y="120" width="220" height="90" rx="18" fill="#1E293B" stroke="#F43F5E" stroke-width="2"/>
+
+  <text x="95" y="160"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    MariaDB 11
+  </text>
+
+  <text x="88" y="190"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Shared Database Layer
+  </text>
+
+  <!-- phpMyAdmin -->
+  <rect x="720" y="120" width="220" height="90" rx="18" fill="#1E293B" stroke="#F97316" stroke-width="2"/>
+
+  <text x="760" y="160"
+        fill="white"
+        font-size="24"
+        font-family="Arial"
+        font-weight="700">
+    phpMyAdmin
+  </text>
+
+  <text x="760" y="190"
+        fill="#CBD5E1"
+        font-size="15"
+        font-family="Arial">
+    Database Management
+  </text>
+
+  <!-- Lines -->
+  <line x1="490" y1="210" x2="190" y2="300" stroke="#475569" stroke-width="3"/>
+  <line x1="490" y1="210" x2="490" y2="300" stroke="#475569" stroke-width="3"/>
+  <line x1="490" y1="210" x2="790" y2="300" stroke="#475569" stroke-width="3"/>
+
+  <!-- Footer -->
+  <text x="40" y="485"
+        fill="#64748B"
+        font-size="14"
+        font-family="Arial">
+    Cross-platform • ARM64 • AMD64 • Docker Compose • Apache + PHP-FPM
+  </text>
+
+</svg>
