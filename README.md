@@ -126,9 +126,7 @@ No local image build required.
 ## Clone Repository
 
 ```bash
-git clone https://github.com/GagalKoding/docker-lamp.git
-
-cd docker-lamp
+git clone https://github.com/GagalKoding/docker-lamp.git && cd docker-lamp
 ```
 
 ---
@@ -179,9 +177,7 @@ Recommended for:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/GagalKoding/docker-lamp.git
-
-cd docker-lamp
+git clone https://github.com/GagalKoding/docker-lamp.git && cd docker-lamp
 ```
 
 ---
