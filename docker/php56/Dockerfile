@@ -14,6 +14,8 @@ RUN apt-get install -y --allow-unauthenticated \
     curl \
     unzip \
     zip \
+    build-essential \
+    pkg-config \
     libzip-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -23,6 +25,9 @@ RUN apt-get install -y --allow-unauthenticated \
     zlib1g-dev \
     libmcrypt-dev \
     libpq-dev \
+    libmemcached-dev \
+    libsasl2-dev \
+    libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure GD
@@ -44,9 +49,25 @@ RUN docker-php-ext-install \
     soap \
     mcrypt
 
-# Install Redis extension (last compatible stable version for PHP 5.6)
+# Install Redis extension
 RUN yes '' | pecl install redis-4.3.0 \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis \
+    && rm -rf /tmp/pear
+
+# Install MongoDB extension (last stable compatible with PHP 5.6)
+RUN yes '' | pecl install mongodb-1.7.5 \
+    && docker-php-ext-enable mongodb \
+    && rm -rf /tmp/pear
+
+# Install Memcached extension
+RUN yes '' | pecl install memcached-2.2.0 \
+    && docker-php-ext-enable memcached \
+    && rm -rf /tmp/pear
+
+# Install APCu extension
+RUN yes '' | pecl install apcu-4.0.11 \
+    && docker-php-ext-enable apcu \
+    && rm -rf /tmp/pear
 
 # Install Composer v1
 RUN curl -sS https://getcomposer.org/installer | php -- \
@@ -62,12 +83,14 @@ RUN mkdir -p /tmp/ioncube \
     else \
         IONCUBE_ARCH="x86-64"; \
     fi \
-    && curl -fsSL https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_${IONCUBE_ARCH}.tar.gz \
+    && curl -fsSL \
+    https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_${IONCUBE_ARCH}.tar.gz \
     -o /tmp/ioncube/ioncube.tar.gz \
     && tar -xzf /tmp/ioncube/ioncube.tar.gz -C /tmp/ioncube \
     && PHP_EXT_DIR=$(php -i | grep extension_dir | head -n1 | awk '{print $3}') \
     && cp /tmp/ioncube/ioncube/ioncube_loader_lin_5.6.so $PHP_EXT_DIR \
-    && echo "zend_extension=$PHP_EXT_DIR/ioncube_loader_lin_5.6.so" > /usr/local/etc/php/conf.d/00-ioncube.ini \
+    && echo "zend_extension=$PHP_EXT_DIR/ioncube_loader_lin_5.6.so" \
+    > /usr/local/etc/php/conf.d/00-ioncube.ini \
     && rm -rf /tmp/ioncube
 
 EXPOSE 9000

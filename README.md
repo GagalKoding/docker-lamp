@@ -1,91 +1,169 @@
 # ![Docker-LAMP](docs/logo.svg)
 
-# Docker-LAMP v2
+# Docker-LAMP Platform v2
 
-Modern multi-runtime PHP development platform with Apache, MariaDB, phpMyAdmin, ionCube, and dynamic `.htaccess` PHP switching.
+Modern multi-runtime PHP infrastructure platform powered by Docker, Apache, PHP-FPM, MariaDB, PostgreSQL, Redis, Memcached, MongoDB extension support, and dynamic runtime switching.
+
+Designed for developers, infrastructure engineers, operations teams, legacy migration, and multi-version PHP environments.
 
 Supports:
 
-* PHP 5.6
-* PHP 7.4
-* PHP 8.5
-* Apache 2.4
-* MariaDB 11
-* phpMyAdmin
-* ionCube Loader
-* Apple Silicon / ARM64
-* Intel / AMD64
-
-Designed for:
-
-* Laravel
-* CodeIgniter
-* WHMCS
-* WordPress
-* Legacy PHP projects
-* Migration testing
-* Multi-version development
+- PHP 5.6
+- PHP 7.4
+- PHP 8.5
+- Apache 2.4
+- MariaDB 11
+- PostgreSQL 17
+- Redis
+- Memcached
+- MongoDB Extension
+- phpMyAdmin
+- pgAdmin
+- ionCube Loader
+- Apple Silicon / ARM64
+- Intel / AMD64
 
 ---
 
-# Features
+# Overview
 
-* Dynamic PHP version switching using `.htaccess`
-* Separate isolated PHP runtime containers
-* Apache + PHP-FPM architecture
-* ARM64 / Apple Silicon support
-* ionCube support
-* MariaDB + phpMyAdmin included
-* Modern Docker Compose architecture
-* Compatible with legacy and modern PHP applications
+Docker-LAMP Platform v2 is a modular multi-runtime PHP infrastructure platform designed for:
+
+- modern PHP applications
+- enterprise legacy systems
+- migration testing
+- multi-version PHP hosting
+- operations-focused development
+- containerized infrastructure
+
+The platform allows multiple PHP runtimes to coexist simultaneously within a single Docker stack while supporting per-project runtime switching using `.htaccess`.
+
+---
+
+# Key Features
+
+- Multi-runtime PHP architecture
+- Dynamic PHP runtime switching
+- Apache + PHP-FPM design
+- MariaDB support
+- PostgreSQL support
+- Redis support
+- Memcached support
+- MongoDB extension support
+- phpMyAdmin included
+- pgAdmin included
+- ionCube Loader support
+- ARM64 / Apple Silicon support
+- AMD64 / Intel support
+- Multi-application hosting
+- VirtualHost architecture
+- Dynamic php.ini configuration
+- Isolated runtime containers
+- Production deployment ready
+
+---
+
+# Supported Technologies
+
+| Category | Technologies |
+|---|---|
+| Web Server | Apache 2.4 |
+| PHP Runtime | PHP 5.6, 7.4, 8.5 |
+| Database | MariaDB, PostgreSQL, SQLite |
+| Cache | Redis, Memcached, APCu |
+| Extensions | MongoDB, LDAP, IMAP, SOAP, ionCube |
+| Administration | phpMyAdmin, pgAdmin |
+| Architectures | ARM64, AMD64 |
+| Container Runtime | Docker Compose |
+
+---
+
+# Use Cases
+
+Docker-LAMP Platform v2 is designed for:
+
+- Laravel development
+- CodeIgniter development
+- WHMCS hosting
+- WordPress hosting
+- Enterprise legacy PHP systems
+- Multi-version PHP hosting
+- Migration testing
+- Shared runtime infrastructure
+- Apple Silicon PHP development
+- Production containerized PHP infrastructure
 
 ---
 
 # Architecture
 
-Docker-LAMP v2 uses a modular container architecture:
+Docker-LAMP Platform v2 uses a modular service-oriented architecture.
 
 ```text
+Internet
+    │
+    ▼
 Apache Container
-    ├── PHP 5.6 Container
-    ├── PHP 7.4 Container
-    ├── PHP 8.5 Container
-    ├── MariaDB Container
-    └── phpMyAdmin Container
+    ├── PHP 5.6 FPM
+    ├── PHP 7.4 FPM
+    ├── PHP 8.5 FPM
+    ├── MariaDB
+    ├── PostgreSQL
+    ├── Redis
+    ├── Memcached
+    ├── phpMyAdmin
+    └── pgAdmin
 ```
 
 Each PHP runtime is fully isolated:
 
-* extensions
-* ionCube
-* PHP-FPM
-* Composer
-* dependencies
+- PHP-FPM
+- extensions
+- ionCube
+- Composer
+- runtime configuration
+- dependencies
 
-This makes the platform:
+This architecture enables:
 
-* cleaner
-* more maintainable
-* easier to upgrade
-* more stable
+- runtime isolation
+- simplified upgrades
+- compatibility testing
+- stable legacy coexistence
+- enterprise migration workflows
+
+---
+
+# Infrastructure Design
+
+Docker-LAMP Platform v2 follows a layered infrastructure design:
+
+- Apache reverse proxy layer
+- Isolated PHP runtime containers
+- Dedicated database services
+- Shared Docker networking
+- Dynamic `.htaccess` runtime routing
+- Multi-runtime coexistence
+- Multi-application hosting
 
 ---
 
 # Supported PHP Versions
 
-| PHP Version | Status       | Purpose                   |
-| ----------- | ------------ | ------------------------- |
-| 5.6         | Legacy       | WHMCS, old CMS, migration |
-| 7.4         | Transitional | Laravel 6/7/8, migration  |
-| 8.5         | Modern       | Latest PHP applications   |
+| PHP Version | Status | Primary Usage |
+|---|---|---|
+| PHP 5.6 | Legacy | WHMCS, legacy CMS, migration |
+| PHP 7.4 | Transitional | Laravel 6/7/8, migration |
+| PHP 8.5 | Modern | Modern frameworks & applications |
 
 ---
 
 # Requirements
 
-* Docker
-* Docker Compose
-* Apple Silicon / Intel supported
+- Docker
+- Docker Compose
+- Linux / macOS / Windows
+- ARM64 or AMD64 CPU
 
 ---
 
@@ -95,7 +173,8 @@ This makes the platform:
 .
 ├── app/
 ├── compose/
-│   └── docker-compose.yml
+│   ├── docker-compose.yml
+│   └── docker-compose.hub.yml
 ├── docker/
 │   ├── apache/
 │   ├── php56/
@@ -108,20 +187,16 @@ This makes the platform:
 
 # Installation Methods
 
-Docker-LAMP v2 supports two installation methods:
+Docker-LAMP Platform v2 supports two installation methods.
 
-| Method            | Recommended For            |
-| ----------------- | -------------------------- |
-| Docker Hub Images | Normal users               |
-| Local Build       | Contributors & development |
+| Method | Recommended For |
+|---|---|
+| Docker Hub Images | Standard users |
+| Local Build | Contributors & customization |
 
 ---
 
-# Method 1 — Docker Hub Images (Recommended)
-
-Uses prebuilt Docker Hub images.
-
-No local image build required.
+# Quick Start
 
 ## Clone Repository
 
@@ -131,24 +206,21 @@ git clone https://github.com/GagalKoding/docker-lamp.git && cd docker-lamp
 
 ---
 
-## Start Containers
+# Method 1 — Docker Hub Images (Recommended)
+
+Uses prebuilt images from Docker Hub.
+
+No local build required.
+
+## Start Stack
 
 ```bash
-docker compose -f compose/docker-compose.hub.yml up
+docker compose -f compose/docker-compose.hub.yml up -d
 ```
-
-Docker will automatically pull:
-
-* Apache
-* PHP runtimes
-* MariaDB
-* phpMyAdmin
-
-from Docker Hub.
 
 ---
 
-## Open in Browser
+## Open Services
 
 Application:
 
@@ -162,25 +234,22 @@ phpMyAdmin:
 http://localhost:8080
 ```
 
+pgAdmin:
+
+```text
+http://localhost:8081
+```
+
 ---
 
 # Method 2 — Local Build
 
-Build all containers locally.
-
 Recommended for:
 
-* contributors
-* runtime customization
-* Docker image development
-
-## Clone Repository
-
-```bash
-git clone https://github.com/GagalKoding/docker-lamp.git && cd docker-lamp
-```
-
----
+- contributors
+- runtime customization
+- infrastructure development
+- extension customization
 
 ## Build Containers
 
@@ -190,43 +259,28 @@ docker compose -f compose/docker-compose.yml build --no-cache
 
 ---
 
-## Start Containers
+## Start Stack
 
 ```bash
-docker compose -f compose/docker-compose.yml up
-```
-
----
-
-## Open in Browser
-
-Application:
-
-```text
-http://localhost
-```
-
-phpMyAdmin:
-
-```text
-http://localhost:8080
+docker compose -f compose/docker-compose.yml up -d
 ```
 
 ---
 
 # PHP Runtime Switching
 
-Docker-LAMP v2 supports dynamic PHP runtime switching using `.htaccess`.
+Docker-LAMP Platform v2 supports dynamic runtime switching using `.htaccess`.
 
-Create:
+This enables:
 
-```text
-app/.htaccess
-```
+- per-project PHP versions
+- migration testing
+- legacy coexistence
+- multi-runtime hosting
 
 ---
 
-## PHP 8.5
+# PHP 8.5
 
 ```apache
 <FilesMatch \.php$>
@@ -236,7 +290,7 @@ app/.htaccess
 
 ---
 
-## PHP 7.4
+# PHP 7.4
 
 ```apache
 <FilesMatch \.php$>
@@ -246,7 +300,7 @@ app/.htaccess
 
 ---
 
-## PHP 5.6
+# PHP 5.6
 
 ```apache
 <FilesMatch \.php$>
@@ -256,11 +310,47 @@ app/.htaccess
 
 No rebuild required.
 
-Simply refresh browser after changing `.htaccess`.
+Refresh browser after changing `.htaccess`.
 
 ---
 
-# Database Access
+# Multi-Application Hosting
+
+Docker-LAMP Platform v2 supports hosting multiple applications simultaneously.
+
+Example:
+
+| Domain | PHP Runtime |
+|---|---|
+| crm.example.com | PHP 8.5 |
+| billing.example.com | PHP 7.4 |
+| legacy.example.com | PHP 5.6 |
+
+Applications can coexist within the same infrastructure stack while using isolated runtimes.
+
+---
+
+# Apache VirtualHost Example
+
+```apache
+<VirtualHost *:80>
+    ServerName crm.example.com
+
+    DocumentRoot /var/www/html/crm/public
+
+    <Directory /var/www/html/crm/public>
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/crm-error.log
+    CustomLog ${APACHE_LOG_DIR}/crm-access.log combined
+</VirtualHost>
+```
+
+---
+
+# Database Services
 
 ## MariaDB
 
@@ -276,17 +366,77 @@ Port:
 3306
 ```
 
-Default credentials:
+Default Credentials:
 
-| Key      | Value |
-| -------- | ----- |
-| Username | root  |
-| Password | root  |
-| Database | app   |
+| Key | Value |
+|---|---|
+| Username | root |
+| Password | root |
+| Database | app |
 
 ---
 
-# phpMyAdmin
+## PostgreSQL
+
+Host:
+
+```text
+postgres
+```
+
+Port:
+
+```text
+5432
+```
+
+Default Credentials:
+
+| Key | Value |
+|---|---|
+| Username | root |
+| Password | root |
+| Database | app |
+
+---
+
+# Cache Services
+
+## Redis
+
+Host:
+
+```text
+redis
+```
+
+Port:
+
+```text
+6379
+```
+
+---
+
+## Memcached
+
+Host:
+
+```text
+memcached
+```
+
+Port:
+
+```text
+11211
+```
+
+---
+
+# Administration Services
+
+## phpMyAdmin
 
 URL:
 
@@ -294,27 +444,28 @@ URL:
 http://localhost:8080
 ```
 
-Server:
+---
+
+## pgAdmin
+
+URL:
 
 ```text
-db
+http://localhost:8081
 ```
 
-Username:
+Default Credentials:
 
-```text
-root
-```
-
-Password:
-
-```text
-root
-```
+| Key | Value |
+|---|---|
+| Email | admin@example.com |
+| Password | root |
 
 ---
 
-# Example PDO Connection
+# Example Database Connections
+
+## MariaDB PDO
 
 ```php
 <?php
@@ -328,37 +479,156 @@ $db = new PDO(
 
 ---
 
-# ionCube Support
+## PostgreSQL PDO
 
-Docker-LAMP v2 includes ionCube support for:
+```php
+<?php
 
-* PHP 5.6
-* PHP 7.4
-* PHP 8.5
-
-Perfect for:
-
-* WHMCS
-* encoded legacy applications
-* commercial PHP software
+$db = new PDO(
+    'pgsql:host=postgres;dbname=app',
+    'root',
+    'root'
+);
+```
 
 ---
 
-# Apple Silicon Support
+# Runtime Extensions
 
-Docker-LAMP v2 fully supports:
+Docker-LAMP Platform v2 includes support for:
 
-* Apple Silicon M1
-* Apple Silicon M2
-* ARM64 systems
+- ionCube Loader
+- Redis
+- Memcached
+- MongoDB
+- APCu
+- PostgreSQL
+- SQLite
+- LDAP
+- IMAP
+- SOAP
+- Imagick
+- XSL
+- Tidy
+- FTP
+- Sockets
+
+---
+
+# ionCube Support
+
+Docker-LAMP Platform v2 includes ionCube support for:
+
+- PHP 5.6
+- PHP 7.4
+- PHP 8.5
+
+Ideal for:
+
+- WHMCS
+- encoded commercial applications
+- enterprise legacy software
+
+---
+
+# Dynamic PHP Configuration
+
+Each PHP runtime supports dynamic php.ini configuration.
+
+Example:
+
+```text
+docker/php85/php.ini
+docker/php74/php.ini
+docker/php56/php.ini
+```
+
+No rebuild required after changing runtime settings.
+
+Example settings:
+
+```ini
+memory_limit = 512M
+upload_max_filesize = 128M
+post_max_size = 128M
+date.timezone = Asia/Jakarta
+```
+
+---
+
+# Apple Silicon & Multiarch Support
+
+Docker-LAMP Platform v2 fully supports:
+
+- Apple Silicon M1
+- Apple Silicon M2
+- ARM64
+- AMD64 / Intel
 
 No Rosetta required.
+
+Supports Docker multi-architecture images.
+
+---
+
+# Operations Workflow
+
+Typical operations workflow:
+
+- deploy stack
+- configure VirtualHosts
+- assign PHP runtime per application
+- configure databases
+- manage runtime isolation
+- monitor container health
+- scale infrastructure services
+- update runtimes independently
+
+---
+
+# Developer Workflow
+
+Typical developer workflow:
+
+- clone repository
+- start stack
+- create project
+- assign PHP runtime
+- develop locally
+- test migrations
+- switch runtimes dynamically
+- deploy consistently
+
+---
+
+# Container Topology
+
+| Service | Container |
+|---|---|
+| Apache | docker-lamp-apache |
+| PHP 5.6 | docker-lamp-php56 |
+| PHP 7.4 | docker-lamp-php74 |
+| PHP 8.5 | docker-lamp-php85 |
+| MariaDB | docker-lamp-db |
+| PostgreSQL | docker-lamp-postgres |
+| Redis | docker-lamp-redis |
+| Memcached | docker-lamp-memcached |
+| phpMyAdmin | docker-lamp-pma |
+| pgAdmin | docker-lamp-pgadmin |
 
 ---
 
 # Common Commands
 
-## Stop Containers
+## Start Stack
+
+```bash
+docker compose -f compose/docker-compose.yml up -d
+```
+
+---
+
+## Stop Stack
 
 ```bash
 docker compose -f compose/docker-compose.yml down
@@ -366,7 +636,7 @@ docker compose -f compose/docker-compose.yml down
 
 ---
 
-## Rebuild Containers
+## Rebuild Stack
 
 ```bash
 docker compose -f compose/docker-compose.yml build --no-cache
@@ -374,7 +644,7 @@ docker compose -f compose/docker-compose.yml build --no-cache
 
 ---
 
-## Remove Everything
+## Remove Stack + Volumes
 
 ```bash
 docker compose -f compose/docker-compose.yml down -v
@@ -382,16 +652,50 @@ docker compose -f compose/docker-compose.yml down -v
 
 ---
 
-# Container Names
+## View Running Containers
 
-| Service    | Container          |
-| ---------- | ------------------ |
-| Apache     | docker-lamp-apache |
-| PHP 5.6    | docker-lamp-php56  |
-| PHP 7.4    | docker-lamp-php74  |
-| PHP 8.5    | docker-lamp-php85  |
-| MariaDB    | docker-lamp-db     |
-| phpMyAdmin | docker-lamp-pma    |
+```bash
+docker ps
+```
+
+---
+
+## View Logs
+
+```bash
+docker compose logs -f
+```
+
+---
+
+# Security Notes
+
+Recommended production practices:
+
+- use reverse proxy
+- configure HTTPS
+- restrict exposed ports
+- isolate production secrets
+- use environment variables
+- avoid default credentials
+- enable backups
+- monitor container health
+
+---
+
+# Roadmap
+
+Planned future improvements:
+
+- Traefik integration
+- automatic SSL
+- environment templates
+- health monitoring
+- queue worker containers
+- scheduler containers
+- backup automation
+- metrics & observability
+- production deployment templates
 
 ---
 
@@ -399,7 +703,7 @@ docker compose -f compose/docker-compose.yml down -v
 
 Pull requests are welcome.
 
-Steps:
+## Workflow
 
 1. Fork repository
 2. Create feature branch
@@ -411,4 +715,4 @@ Steps:
 
 # License
 
-Apache 2.0 License
+Apache License 2.0

@@ -3,4 +3,9 @@ tests/actual
 vendor/
 node_modules/
 .env
+.env.*
 .DS_Store
+docker-data/
+*.log
+*.sql
+*.sqlite
