@@ -106,12 +106,81 @@ This makes the platform:
 
 ---
 
-# Quick Start
+# Installation Methods
+
+Docker-LAMP v2 supports two installation methods:
+
+| Method            | Recommended For            |
+| ----------------- | -------------------------- |
+| Docker Hub Images | Normal users               |
+| Local Build       | Contributors & development |
+
+---
+
+# Method 1 — Docker Hub Images (Recommended)
+
+Uses prebuilt Docker Hub images.
+
+No local image build required.
 
 ## Clone Repository
 
 ```bash
 git clone https://github.com/GagalKoding/docker-lamp.git
+
+cd docker-lamp
+```
+
+---
+
+## Start Containers
+
+```bash
+docker compose -f compose/docker-compose.hub.yml up
+```
+
+Docker will automatically pull:
+
+* Apache
+* PHP runtimes
+* MariaDB
+* phpMyAdmin
+
+from Docker Hub.
+
+---
+
+## Open in Browser
+
+Application:
+
+```text
+http://localhost
+```
+
+phpMyAdmin:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Method 2 — Local Build
+
+Build all containers locally.
+
+Recommended for:
+
+* contributors
+* runtime customization
+* Docker image development
+
+## Clone Repository
+
+```bash
+git clone https://github.com/GagalKoding/docker-lamp.git
+
 cd docker-lamp
 ```
 

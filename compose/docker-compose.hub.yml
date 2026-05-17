@@ -1,0 +1,86 @@
+services:
+  apache:
+    image: gagalkoding/lamp:2.0-apache
+
+    container_name: docker-lamp-apache
+
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ../app:/var/www/html
+
+    depends_on:
+      - php56
+      - php74
+      - php85
+
+  php56:
+    image: gagalkoding/lamp:2.0-php56
+
+    container_name: docker-lamp-php56
+
+    restart: unless-stopped
+
+    volumes:
+      - ../app:/var/www/html
+
+  php74:
+    image: gagalkoding/lamp:2.0-php74
+
+    container_name: docker-lamp-php74
+
+    restart: unless-stopped
+
+    volumes:
+      - ../app:/var/www/html
+
+  php85:
+    image: gagalkoding/lamp:2.0-php85
+
+    container_name: docker-lamp-php85
+
+    restart: unless-stopped
+
+    volumes:
+      - ../app:/var/www/html
+
+  db:
+    image: mariadb:11
+
+    container_name: docker-lamp-db
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+
+    container_name: docker-lamp-pma
+
+    restart: unless-stopped
+
+    ports:
+      - "8080:80"
+
+    environment:
+      PMA_HOST: db
+
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
