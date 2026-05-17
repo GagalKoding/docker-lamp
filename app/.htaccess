@@ -1,15 +1,48 @@
+# =========================================================
+# Docker-LAMP v2 — Dynamic PHP Runtime Switching
+# =========================================================
+#
+# Each project or folder can use its own PHP version
+# independently using a local .htaccess file.
+#
+# Example:
+#
+# /project-legacy     -> PHP 5.6
+# /project-laravel    -> PHP 7.4
+# /project-modern     -> PHP 8.5
+#
+# Simply place this .htaccess file inside the target
+# project/folder and choose the desired PHP runtime.
+#
+# No container rebuild required.
+# No Apache restart required.
+#
+# =========================================================
+# DEFAULT RUNTIME — PHP 8.5
+# =========================================================
+
 <FilesMatch \.php$>
     SetHandler "proxy:fcgi://php85:9000"
 </FilesMatch>
 
-# To switch to PHP 7.4 use:
+# =========================================================
+# PHP 7.4
+# =========================================================
 #
+# Uncomment below to use PHP 7.4
+#
+
 # <FilesMatch \.php$>
 #     SetHandler "proxy:fcgi://php74:9000"
 # </FilesMatch>
 
-# To switch to PHP 5.6 use:
+# =========================================================
+# PHP 5.6
+# =========================================================
 #
+# Uncomment below to use PHP 5.6
+#
+
 # <FilesMatch \.php$>
 #     SetHandler "proxy:fcgi://php56:9000"
 # </FilesMatch>
