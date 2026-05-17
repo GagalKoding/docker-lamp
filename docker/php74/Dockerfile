@@ -98,8 +98,11 @@ RUN mkdir -p /tmp/ioncube \
     && PHP_EXT_DIR=$(php -i | grep extension_dir | head -n1 | awk '{print $3}') \
     && cp /tmp/ioncube/ioncube/ioncube_loader_lin_7.4.so $PHP_EXT_DIR \
     && echo "zend_extension=$PHP_EXT_DIR/ioncube_loader_lin_7.4.so" \
-    > /etc/php/7.4/mods-available/ioncube.ini \
-    && phpenmod ioncube \
+    > /etc/php/7.4/mods-available/00-ioncube.ini \
+    && ln -sf /etc/php/7.4/mods-available/00-ioncube.ini \
+    /etc/php/7.4/cli/conf.d/00-ioncube.ini \
+    && ln -sf /etc/php/7.4/mods-available/00-ioncube.ini \
+    /etc/php/7.4/fpm/conf.d/00-ioncube.ini \
     && rm -rf /tmp/ioncube
 
 # Expose PHP-FPM port
